@@ -1,0 +1,492 @@
+import React, { useState } from 'react';
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, AreaChart, Area } from 'recharts';
+import { TrendingDown, TrendingUp, Users, Heart, Shield, School, AlertTriangle, CheckCircle, Info } from 'lucide-react';
+
+const Finding10Infographic = () => {
+  const mmrData = [
+    { year: '1990', mmr: 574, target: null, source: 'WHO/UNICEF' },
+    { year: '2001', mmr: 322, target: null, source: 'WHO/UNICEF' },
+    { year: '2010', mmr: 216, target: null, source: 'WHO/UNICEF' },
+    { year: '2015', mmr: 176, target: 143, source: 'UNICEF Bangladesh' },
+    { year: '2016', mmr: 196, target: null, source: 'BMMS 2016' },
+    { year: '2020', mmr: 152, target: null, source: 'World Bank' },
+    { year: '2023', mmr: 115, target: 105, source: 'WHO/UNICEF 2025' }
+  ];
+
+  const childMarriageData = [
+    { category: 'Married before 15', percentage: 15.5, color: '#DC2626' },
+    { category: 'Married 15-17', percentage: 35.9, color: '#F59E0B' },
+    { category: 'Not married before 18', percentage: 48.6, color: '#10B981' }
+  ];
+
+  const regionalChildMarriage = [
+    { division: 'Sylhet', rate: 31.0 },
+    { division: 'Dhaka Urban', rate: 48.6 },
+    { division: 'National', rate: 51.4 },
+    { division: 'Rural', rate: 53.8 },
+    { division: 'Rajshahi', rate: 66.7 }
+  ];
+
+  const serviceProgress = [
+    { service: 'Midwifery Care', baseline: 45, current: 73, target: 75 },
+    { service: 'GBV Facilities', baseline: 12, current: 30, target: 40 },
+    { service: 'DHIS2 Integration', baseline: 0, current: 57, target: 100 },
+    { service: 'ANC 4+', baseline: 47, current: 64, target: 70 }
+  ];
+
+  const equityData = [
+    { indicator: 'Skilled Birth', poorest: 18, richest: 74 },
+    { indicator: 'Modern FP', poorest: 48, richest: 62 },
+    { indicator: 'Secondary School', poorest: 52, richest: 92 }
+  ];
+
+  const threeTRs = [
+    { indicator: 'MMR Reduction', progress: 79 },
+    { indicator: 'Unmet FP Need', progress: 65 },
+    { indicator: 'GBV Services', progress: 58 },
+    { indicator: 'Child Marriage', progress: 42 },
+    { indicator: 'Adolescent Fertility', progress: 35 }
+  ];
+
+  const SourceBadge = ({ source }) => (
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-200 rounded text-xs text-gray-700">
+      <Info className="w-3 h-3" />
+      {source}
+    </span>
+  );
+
+  return (
+    <div className="w-full bg-gradient-to-br from-purple-50 via-white to-pink-50 p-8 font-sans">
+      <div className="max-w-7xl mx-auto">
+        <div className="bg-gradient-to-r from-purple-700 to-pink-600 text-white p-8 rounded-t-2xl shadow-2xl">
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <h1 className="text-4xl font-bold mb-2">Finding 10: Substantial but Uneven Systems Strengthening</h1>
+              <h2 className="text-2xl font-light mb-4">UNFPA Bangladesh CP10 Contribution to SRHR, GBV and Adolescent Youth Services</h2>
+              <p className="text-lg opacity-90">Evidence-based analysis with verified sources from MICS 2019, BDHS 2022, and national monitoring systems</p>
+            </div>
+            <Heart className="w-24 h-24 opacity-20" />
+          </div>
+        </div>
+
+        <div className="bg-white shadow-lg p-6 grid grid-cols-5 gap-4 border-l-4 border-r-4 border-purple-600">
+          <div className="text-center">
+            <div className="text-3xl font-bold text-purple-700">61,242</div>
+            <div className="text-xs text-gray-600 mb-1">Households MICS 2019</div>
+            <SourceBadge source="UNICEF MICS 2019" />
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-pink-600">115</div>
+            <div className="text-xs text-gray-600 mb-1">MMR per 100K (2023)</div>
+            <SourceBadge source="WHO/UNICEF 2025" />
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-orange-600">73%</div>
+            <div className="text-xs text-gray-600 mb-1">Quality Midwifery</div>
+            <SourceBadge source="UNFPA 2024" />
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-green-600">44,000</div>
+            <div className="text-xs text-gray-600 mb-1">Youth Reached</div>
+            <SourceBadge source="UNFPA 2024" />
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-red-600">51.4%</div>
+            <div className="text-xs text-gray-600 mb-1">Child Marriage</div>
+            <SourceBadge source="MICS 2019" />
+          </div>
+        </div>
+
+        <div className="bg-white shadow-lg p-8 rounded-b-2xl">
+          
+          <div className="bg-gradient-to-r from-indigo-100 to-purple-100 p-6 rounded-xl mb-8 border-2 border-indigo-300">
+            <h3 className="text-2xl font-bold text-indigo-900 mb-4">Understanding Finding 10: The Core Argument</h3>
+            <div className="bg-white p-4 rounded-lg">
+              <p className="text-gray-800 mb-3">
+                <strong>Finding 10 states:</strong> UNFPA has made a substantial but uneven contribution to strengthening national and district systems, shifting from projectized delivery to routine, integrated public services.
+              </p>
+              <div className="grid grid-cols-2 gap-4 mt-4">
+                <div className="bg-green-50 p-3 rounded border-l-4 border-green-500">
+                  <div className="font-bold text-green-900 mb-2">Evidence of Substantial:</div>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li>• 79% MMR reduction (2000-2023)</li>
+                    <li>• 73% facilities with quality midwifery</li>
+                    <li>• Codified standards and SOPs</li>
+                    <li>• DHIS2 integration advancing</li>
+                  </ul>
+                </div>
+                <div className="bg-orange-50 p-3 rounded border-l-4 border-orange-500">
+                  <div className="font-bold text-orange-900 mb-2">Evidence of Uneven:</div>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li>• Child marriage: 51.4% before 18</li>
+                    <li>• Regional disparities (31%-67%)</li>
+                    <li>• Adolescent fertility stagnant</li>
+                    <li>• Disability data incomplete</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4 mb-8">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl border-2 border-green-300">
+              <h4 className="font-bold text-green-900 mb-2 flex items-center gap-2">
+                <CheckCircle className="w-5 h-5" />
+                Policy and Standards
+              </h4>
+              <ul className="text-sm space-y-1 text-gray-700">
+                <li>✓ FP2030 strategy (2022-2024)</li>
+                <li>✓ MISP in national plans</li>
+                <li>✓ Midwifery standards codified</li>
+                <li>✓ GBV medico-legal SOPs</li>
+              </ul>
+              <div className="mt-2 text-xs text-green-800 bg-green-200 p-2 rounded">
+                <strong>Why Finding 10:</strong> Ad-hoc to policy-mandated
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border-2 border-blue-300">
+              <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
+                <Heart className="w-5 h-5" />
+                Service Delivery
+              </h4>
+              <ul className="text-sm space-y-1 text-gray-700">
+                <li>✓ 73% quality midwifery care</li>
+                <li>✓ 30% GBV-trained facilities</li>
+                <li>✓ Expanded provider skills</li>
+                <li>✓ Climate-vulnerable priority</li>
+              </ul>
+              <div className="mt-2 text-xs text-blue-800 bg-blue-200 p-2 rounded">
+                <strong>Why Finding 10:</strong> Routine integrated services
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl border-2 border-purple-300">
+              <h4 className="font-bold text-purple-900 mb-2 flex items-center gap-2">
+                <Users className="w-5 h-5" />
+                Information Systems
+              </h4>
+              <ul className="text-sm space-y-1 text-gray-700">
+                <li>✓ 8/14 SRHR indicators in DHIS2</li>
+                <li>✓ District dashboards active</li>
+                <li>✓ Demographic intelligence</li>
+                <li>✓ Digital feedback loops</li>
+              </ul>
+              <div className="mt-2 text-xs text-purple-800 bg-purple-200 p-2 rounded">
+                <strong>Why Finding 10:</strong> Data-driven decisions
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <TrendingDown className="w-8 h-8 text-purple-600" />
+              <h3 className="text-2xl font-bold text-gray-800">1. Maternal Mortality: Strong Systems Contribution</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-purple-50 p-6 rounded-xl">
+                <div className="mb-3">
+                  <h4 className="font-bold text-purple-900">MMR Trajectory 1990-2023</h4>
+                  <SourceBadge source="WHO/UNICEF/UNFPA/World Bank 2025" />
+                </div>
+                <ResponsiveContainer width="100%" height={300}>
+                  <AreaChart data={mmrData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="year" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Area type="monotone" dataKey="mmr" stroke="#9333EA" fill="#9333EA" fillOpacity={0.3} name="Actual MMR" />
+                    <Line type="monotone" dataKey="target" stroke="#EC4899" strokeWidth={2} strokeDasharray="5 5" name="Target" />
+                  </AreaChart>
+                </ResponsiveContainer>
+                <div className="mt-3 bg-white p-3 rounded">
+                  <div className="text-sm font-bold text-purple-900">Key Evidence:</div>
+                  <ul className="text-xs text-gray-700 space-y-1 mt-2">
+                    <li>• 574 (1990) to 115 (2023) = 79% reduction</li>
+                    <li>• Exceeded global 40% average</li>
+                    <li>• Annual reduction: 7% (2000-2023)</li>
+                    <li>• ~4,000 maternal deaths saved (2023)</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                  <div className="flex items-center gap-2 mb-2">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <h4 className="font-bold text-green-800">Why Substantial: Direct UNFPA</h4>
+                  </div>
+                  <ul className="text-sm text-gray-700 space-y-2">
+                    <li>• <strong>73%</strong> facilities with quality midwifery (UNFPA 2024) - target exceeded</li>
+                    <li>• <strong>30%</strong> hospitals with GBV training (UNFPA 2022-24) - targets met</li>
+                    <li>• <strong>MISP</strong> in national plans - policy-mandated SRHR</li>
+                    <li>• <strong>SOPs</strong> for GBV - standardized care</li>
+                  </ul>
+                </div>
+                <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded">
+                  <div className="flex items-center gap-2 mb-2">
+                    <AlertTriangle className="w-5 h-5 text-orange-600" />
+                    <h4 className="font-bold text-orange-800">Why Uneven: Constraints</h4>
+                  </div>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li>• Rural-urban: 30% home births</li>
+                    <li>• Wealth: 18% vs 74% skilled birth</li>
+                    <li>• District variation in ANC 4+</li>
+                    <li>• Stock-outs persist</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <Heart className="w-8 h-8 text-pink-600" />
+              <h3 className="text-2xl font-bold text-gray-800">2. Service Coverage: Institutionalization Evidence</h3>
+            </div>
+            <div className="bg-pink-50 p-6 rounded-xl">
+              <div className="mb-3">
+                <h4 className="font-bold text-pink-900">Progress Toward 2026 Targets</h4>
+                <SourceBadge source="UNFPA Annual Reports 2022-2024" />
+              </div>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={serviceProgress}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="service" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="baseline" fill="#E5E7EB" name="Baseline" />
+                  <Bar dataKey="current" fill="#EC4899" name="Current 2024" />
+                  <Bar dataKey="target" fill="#9333EA" name="Target 2026" />
+                </BarChart>
+              </ResponsiveContainer>
+              <div className="grid grid-cols-4 gap-3 mt-6">
+                <div className="bg-white p-3 rounded-lg shadow">
+                  <div className="text-2xl font-bold text-pink-600">73%</div>
+                  <div className="text-xs text-gray-600">Midwifery Care</div>
+                  <div className="text-xs bg-green-100 p-1 rounded mt-1">Exceeded</div>
+                </div>
+                <div className="bg-white p-3 rounded-lg shadow">
+                  <div className="text-2xl font-bold text-purple-600">30%</div>
+                  <div className="text-xs text-gray-600">GBV Facilities</div>
+                  <div className="text-xs bg-green-100 p-1 rounded mt-1">Met since 2022</div>
+                </div>
+                <div className="bg-white p-3 rounded-lg shadow">
+                  <div className="text-2xl font-bold text-orange-600">57%</div>
+                  <div className="text-xs text-gray-600">DHIS2 SRHR</div>
+                  <div className="text-xs bg-yellow-100 p-1 rounded mt-1">8/14 integrated</div>
+                </div>
+                <div className="bg-white p-3 rounded-lg shadow">
+                  <div className="text-2xl font-bold text-blue-600">64%</div>
+                  <div className="text-xs text-gray-600">ANC 4+</div>
+                  <div className="text-xs bg-yellow-100 p-1 rounded mt-1">District varies</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <Shield className="w-8 h-8 text-red-600" />
+              <h3 className="text-2xl font-bold text-gray-800">3. Child Marriage: The Uneven Evidence</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-red-50 p-6 rounded-xl">
+                <div className="mb-3">
+                  <h4 className="font-bold text-red-800">Marriage Before 18 (Women 20-24)</h4>
+                  <SourceBadge source="MICS 2019" />
+                </div>
+                <ResponsiveContainer width="100%" height={250}>
+                  <PieChart>
+                    <Pie
+                      data={childMarriageData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({percentage}) => `${percentage}%`}
+                      outerRadius={80}
+                      dataKey="percentage"
+                    >
+                      {childMarriageData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+                <div className="mt-3 bg-white p-3 rounded">
+                  <ul className="text-sm space-y-1">
+                    <li>• <strong>51.4%</strong> married before 18</li>
+                    <li>• <strong>15.5%</strong> married before 15</li>
+                    <li>• <strong>8th highest</strong> globally</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <div className="bg-orange-50 p-6 rounded-xl mb-4">
+                  <div className="mb-3">
+                    <h4 className="font-bold text-orange-800">Regional Disparities</h4>
+                    <SourceBadge source="MICS 2019" />
+                  </div>
+                  <ResponsiveContainer width="100%" height={200}>
+                    <BarChart data={regionalChildMarriage} layout="vertical">
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis type="number" domain={[0, 70]} />
+                      <YAxis dataKey="division" type="category" width={80} />
+                      <Tooltip />
+                      <Bar dataKey="rate" fill="#F59E0B">
+                        {regionalChildMarriage.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.rate > 60 ? '#DC2626' : entry.rate > 50 ? '#F59E0B' : '#10B981'} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                  <div className="mt-2 text-xs bg-white p-2 rounded">
+                    2x variation: Sylhet (31%) vs Rajshahi (67%)
+                  </div>
+                </div>
+                <div className="bg-red-100 border-l-4 border-red-600 p-4 rounded">
+                  <h4 className="font-bold text-red-800 mb-2">Violence Against Children</h4>
+                  <SourceBadge source="MICS 2019" />
+                  <div className="text-3xl font-bold text-red-600 mt-2">88.8%</div>
+                  <p className="text-sm text-gray-700">Children (1-14) experienced violence</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <Users className="w-8 h-8 text-blue-600" />
+              <h3 className="text-2xl font-bold text-gray-800">4. Equity: The Measurement Challenge</h3>
+            </div>
+            <div className="bg-blue-50 p-6 rounded-xl">
+              <div className="mb-3">
+                <h4 className="font-bold text-blue-900">Wealth Quintile Disparities</h4>
+                <SourceBadge source="MICS 2019 / BDHS 2022" />
+              </div>
+              <ResponsiveContainer width="100%" height={250}>
+                <BarChart data={equityData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="indicator" />
+                  <YAxis domain={[0, 100]} />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="poorest" fill="#3B82F6" name="Poorest" />
+                  <Bar dataKey="richest" fill="#10B981" name="Richest" />
+                </BarChart>
+              </ResponsiveContainer>
+              <div className="mt-4 bg-white p-4 rounded">
+                <div className="font-bold mb-2">Why Finding 10 Says Uneven:</div>
+                <ul className="text-sm space-y-1">
+                  <li>• Skilled birth: 56 point gap (18% vs 74%)</li>
+                  <li>• 7.3% children with disability (MICS 2019)</li>
+                  <li>• Only 35% disability data complete in DHIS2</li>
+                  <li>• MMR lacks robust disaggregation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <School className="w-8 h-8 text-green-600" />
+              <h3 className="text-2xl font-bold text-gray-800">5. Adolescents: Mixed Progress</h3>
+            </div>
+            <div className="bg-green-50 p-6 rounded-xl">
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="bg-white p-4 rounded">
+                  <h4 className="font-bold text-green-800 mb-2">UNFPA Achievements</h4>
+                  <SourceBadge source="UNFPA 2024" />
+                  <ul className="text-sm mt-2 space-y-1">
+                    <li>• 44,000 youth reached with LSE</li>
+                    <li>• 1,100 schools engaged</li>
+                    <li>• Curriculum integration (2022-23)</li>
+                    <li>• Targets exceeded through 2024</li>
+                  </ul>
+                </div>
+                <div className="bg-white p-4 rounded">
+                  <h4 className="font-bold text-orange-800 mb-2">Persistent Challenges</h4>
+                  <SourceBadge source="MICS 2019" />
+                  <ul className="text-sm mt-2 space-y-1">
+                    <li>• Adolescent birth rate: 83 (stagnant)</li>
+                    <li>• 13.1% out of lower secondary</li>
+                    <li>• Boys dropout: 18.1%</li>
+                    <li>• 2024 curriculum halt = risk</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <TrendingUp className="w-8 h-8 text-purple-600" />
+              <h3 className="text-2xl font-bold text-gray-800">6. Three Transformative Results: Overall Status</h3>
+            </div>
+            <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl">
+              <ResponsiveContainer width="100%" height={350}>
+                <RadarChart data={threeTRs}>
+                  <PolarGrid />
+                  <PolarAngleAxis dataKey="indicator" />
+                  <PolarRadiusAxis angle={90} domain={[0, 100]} />
+                  <Radar name="Progress %" dataKey="progress" stroke="#9333EA" fill="#9333EA" fillOpacity={0.6} />
+                  <Tooltip />
+                </RadarChart>
+              </ResponsiveContainer>
+              <div className="grid grid-cols-5 gap-3 mt-4">
+                {threeTRs.map((item, i) => (
+                  <div key={i} className="bg-white p-3 rounded shadow text-center">
+                    <div className={`text-xl font-bold ${item.progress > 70 ? 'text-green-600' : item.progress > 50 ? 'text-orange-600' : 'text-red-600'}`}>
+                      {item.progress}%
+                    </div>
+                    <div className="text-xs text-gray-600">{item.indicator}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-xl border-2 border-purple-300">
+            <h3 className="text-xl font-bold mb-4 text-purple-900">Conclusion: Why Finding 10 is Substantiated</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white p-4 rounded">
+                <h4 className="font-bold text-green-800 mb-2 flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5" />
+                  Substantial Contributions
+                </h4>
+                <ul className="text-sm space-y-1 text-gray-700">
+                  <li>• 79% MMR reduction (verified WHO/UNICEF)</li>
+                  <li>• 73% quality midwifery (target exceeded)</li>
+                  <li>• Policy codification complete</li>
+                  <li>• 44K youth reached with LSE</li>
+                  <li>• DHIS2 integration advancing</li>
+                </ul>
+              </div>
+              <div className="bg-white p-4 rounded">
+                <h4 className="font-bold text-red-800 mb-2 flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5" />
+                  Uneven Progress
+                </h4>
+                <ul className="text-sm space-y-1 text-gray-700">
+                  <li>• 51.4% child marriage (8th globally)</li>
+                  <li>• 2x regional variation (31-67%)</li>
+                  <li>• Adolescent fertility stagnant</li>
+                  <li>• Wealth gap: 56 points skilled birth</li>
+                  <li>• Disability data only 35% complete</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-100 p-4 rounded-lg mt-6 text-xs text-gray-600">
+            <p><strong>Primary Sources:</strong> Bangladesh MICS 2019 (UNICEF), BDHS 2022, WHO/UNICEF/UNFPA/World Bank Maternal Mortality Report 2025, DHIS2/HMIS 2024, UNFPA Bangladesh Annual Reports 2022-2024, District Administrative Records</p>
+            <p className="mt-2"><strong>Finding 10 Rating:</strong> Substantiated/Substantial contribution with key constraints to address (equity visibility, execution, HD-nexus continuity)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Finding10Infographic;
